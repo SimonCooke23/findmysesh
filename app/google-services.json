@@ -1,0 +1,107 @@
+{
+  "project_info": {
+    "project_number": "334978091329",
+    "firebase_url": "https://find-my-sesh.firebaseio.com",
+    "project_id": "find-my-sesh",
+    "storage_bucket": "find-my-sesh.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334978091329:android:6c1cf543b4f7677b",
+        "android_client_info": {
+          "package_name": "com.example.hopper.loginpage"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334978091329-sfl163hq0vu9s4o0foujrqmhaui8t0gr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hopper.loginpage",
+            "certificate_hash": "8317c64bf997aa01552c887bffda147cfac939db"
+          }
+        },
+        {
+          "client_id": "334978091329-v6moukbgiqetn307esdp56ulh2tlchqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7wSMh2H85IuqMDYc6ebKnoqTEE0-O96U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334978091329-v6moukbgiqetn307esdp56ulh2tlchqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334978091329:android:cc33657cac7b1c3c",
+        "android_client_info": {
+          "package_name": "com.simoncooke.findmysesh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334978091329-i76c6q5befnh9aot6opsji71guedd74e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simoncooke.findmysesh",
+            "certificate_hash": "c31058ac569cf691cd4fe80c19caff9b53bb966e"
+          }
+        },
+        {
+          "client_id": "334978091329-7baergl93aphh3ajuv8hd98tdepg0loo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.simoncooke.findmysesh",
+            "certificate_hash": "e18024190e07949ff6ec54b4b134572c597d926d"
+          }
+        },
+        {
+          "client_id": "334978091329-v6moukbgiqetn307esdp56ulh2tlchqe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7wSMh2H85IuqMDYc6ebKnoqTEE0-O96U"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334978091329-v6moukbgiqetn307esdp56ulh2tlchqe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

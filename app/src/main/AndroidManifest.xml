@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.simoncooke.findmysesh"
+    android:largeHeap="true">
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality. 
+    -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/findmyseshicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/findmyseshicon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:supportsRtl">
+        <activity android:name="com.simoncooke.findmysesh.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.simoncooke.findmysesh.BaseActivity" />
+        <activity android:name="com.simoncooke.findmysesh.SignInActivity" />
+        <activity android:name="com.simoncooke.findmysesh.SignUpActivity" />
+        <activity android:name="com.simoncooke.findmysesh.CreateProfileActivity" />
+        <activity android:name="com.simoncooke.findmysesh.HomeActivity" />
+        <activity android:name="com.simoncooke.findmysesh.ProfileActivity" />
+        <activity
+            android:name="com.simoncooke.findmysesh.CreateEventActivity"
+            android:label="Create Event" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBBci31b1JNldDprNL-s11Q3BXEUibt_HY" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name="com.simoncooke.findmysesh.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity android:name="com.simoncooke.findmysesh.EventActivity" />
+        <activity
+            android:name="com.simoncooke.findmysesh.ViewEventMapActivity"
+            android:label="@string/title_activity_view_event_map"></activity>
+    </application>
+
+</manifest>
