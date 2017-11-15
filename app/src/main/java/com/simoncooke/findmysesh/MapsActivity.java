@@ -23,7 +23,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.simoncooke.findmysesh.models.PlaceInfo;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
@@ -43,6 +42,7 @@ import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.simoncooke.findmysesh.models.PlaceInfo;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -81,6 +81,7 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 1234;
     private static final float DEFAULT_ZOOM = 15f;
     private static final LatLngBounds LAT_LNG_BOUNDS = new LatLngBounds(new LatLng(-40,-168), new LatLng(71, 136));
+    private static final int PROXIMITY_RADIUS = 10000;
 
     private GoogleApiClient mGoogleApiClient;
 
@@ -96,6 +97,10 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private PlaceAutocompleteAdapter mPlaceAutocompleteAdapter;
     private PlaceInfo mPlace;
+
+    private double latitude;
+    private double longitude;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -293,6 +298,10 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,
 
     }
 
+
+
+
+
     /*
     --------------- google places api autocomplete suggestions -------------------
      */
@@ -347,6 +356,69 @@ public class MapsActivity extends BaseActivity implements OnMapReadyCallback,
 
         }
     };
+
+
+
+
+
+
+
+
+
+    private String getUrl(double latitude, double longitude, String nearbyPlace, String keyword) {
+        StringBuilder googlePlaceUrl = new StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json?");
+        googlePlaceUrl.append("location="+latitude+","+longitude);
+        googlePlaceUrl.append("&radius="+PROXIMITY_RADIUS);
+        googlePlaceUrl.append("&type="+nearbyPlace);
+        googlePlaceUrl.append("&keyword="+keyword);
+        googlePlaceUrl.append("&key="+"AIzaSyBBci31b1JNldDprNL-s11Q3BXEUibt_HY");
+
+        return googlePlaceUrl.toString();
+    }
+
+    public void onClick(View v) {
+        Object dataTransfer[] = new Object[2];
+        GetNearbyPlacesData getNearbyPlacesData = new GetNearbyPlacesData();
+
+        switch (v.getId()) {
+            case R.id.B_pubs:
+                mMap.clear();
+                String pub = "pub";
+                String keyword = "bar";
+                String url = getUrl(latitude, longitude, pub, keyword);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+
+                getNearbyPlacesData.execute(dataTransfer);
+                Toast.makeText(MapsActivity.this, "Showing Nearby Pubs", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.B_restaurant:
+                mMap.clear();
+                String restaurant = "restaurant";
+                String keyword2 = "food";
+                url = getUrl(latitude, longitude, restaurant, keyword2);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+
+                getNearbyPlacesData.execute(dataTransfer);
+                Toast.makeText(MapsActivity.this, "Showing Nearby Restaurants", Toast.LENGTH_LONG).show();
+                break;
+
+            case R.id.B_clubs:
+                mMap.clear();
+                String club = "club";
+                String keyword3 = "nightclub";
+                url = getUrl(latitude, longitude, club, keyword3);
+                dataTransfer[0] = mMap;
+                dataTransfer[1] = url;
+
+                getNearbyPlacesData.execute(dataTransfer);
+                Toast.makeText(MapsActivity.this, "Showing Nearby Clubs", Toast.LENGTH_LONG).show();
+                break;
+
+        }
+    }
 }
 
 

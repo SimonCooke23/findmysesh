@@ -48,6 +48,7 @@
         <activity android:name="com.simoncooke.findmysesh.CreateProfileActivity" />
         <activity android:name="com.simoncooke.findmysesh.HomeActivity" />
         <activity android:name="com.simoncooke.findmysesh.ProfileActivity" />
+        <activity android:name="com.simoncooke.findmysesh.MapsActivity2" />
         <activity
             android:name="com.simoncooke.findmysesh.CreateEventActivity"
             android:label="Create Event" />

@@ -44,7 +44,38 @@
             android:imeOptions="actionSearch"
             android:inputType="text"/>
 
+
+
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/B_clubs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/B_restaurant"
+        android:layout_alignBottom="@+id/B_restaurant"
+        android:layout_alignStart="@+id/relLayout1"
+        android:onClick="onClick"
+        android:text="Clubs" />
+
+    <Button
+        android:id="@+id/B_restaurant"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/B_clubs"
+        android:layout_marginTop="66dp"
+        android:onClick="onClick"
+        android:text="Restaurants" />
+
+    <Button
+        android:id="@+id/B_pubs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:layout_marginTop="66dp"
+
+        android:text="Pubs"
+        android:layout_toEndOf="@+id/B_restaurant" />
 
     <ImageView
         android:layout_width="40dp"

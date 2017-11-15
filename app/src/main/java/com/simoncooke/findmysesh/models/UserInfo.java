@@ -24,6 +24,6 @@ public class UserInfo {
         this.seshLevel = seshLevel;
         this.town = town;
         this.dateOfBirth = dateOfBirth;
-    }
 
+}
 }

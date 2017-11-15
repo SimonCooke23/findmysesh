@@ -40,10 +40,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private TextView profileNameTextView;
     private TextView partiesHostedTextView;
     private ImageView profilePicture;
+    private TextView seshLevelTextView;
+    private TextView livesInTextView;
 
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
 
+    private static final String TAG = "ProfileActivity";
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -72,6 +75,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         profilePicture = findViewById(R.id.profilePicture);
         logoutButton = findViewById(R.id.logoutButton);
         partiesHostedTextView = findViewById(R.id.partiesHostedTextView);
+        seshLevelTextView = findViewById(R.id.seshLevelTextView);
+        livesInTextView = findViewById(R.id.livesInTextView);
 
         logoutButton.setOnClickListener(this);
 
@@ -80,35 +85,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-
-        StorageReference filePath = mStorage.child("profilePictures").child(user.getUid());
-
-        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                PicassoCache.getPicassoInstance(ProfileActivity.this).load(uri).fit().centerCrop().into(profilePicture);
-            }
-        });
-
-        mDatabase.child("users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                String name = dataSnapshot.child("firstName").getValue().toString().trim();
-                name = name + " " + dataSnapshot.child("lastName").getValue().toString().trim();
-                String partiesHosted = dataSnapshot.child("partiesHosted").getValue().toString().trim();
-                profileNameTextView.setText(name);
-                partiesHostedTextView.setText("Parties Hosted: " + partiesHosted);
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        mAuth = FirebaseAuth.getInstance();
-
-
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -123,7 +99,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 .build();
 
 
-
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this /* FragmentActivity */, new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
@@ -133,6 +108,44 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
                 })
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+        StorageReference filePath = mStorage.child("profilePictures").child(user.getUid());
+
+        filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                PicassoCache.getPicassoInstance(ProfileActivity.this).load(uri).fit().centerCrop().into(profilePicture);
+            }
+        });
+
+
+
+        mDatabase.child("users").child(user.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                String name = null;
+                String partiesHosted = null;
+                String seshLevel = null;
+                String livesIn = null;
+
+                name = dataSnapshot.child("firstName").getValue().toString();
+                name = name + " " + dataSnapshot.child("lastName").getValue().toString();
+                partiesHosted = dataSnapshot.child("partiesHosted").getValue().toString();
+                seshLevel = dataSnapshot.child("seshLevel").getValue().toString();
+                livesIn = dataSnapshot.child("town").getValue().toString();
+
+
+                profileNameTextView.setText(name);
+                partiesHostedTextView.setText("Parties Hosted: " + partiesHosted);
+                seshLevelTextView.setText("Current Sesh Level: " + seshLevel);
+                livesInTextView.setText("Lives in: " + livesIn);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
     }
 
