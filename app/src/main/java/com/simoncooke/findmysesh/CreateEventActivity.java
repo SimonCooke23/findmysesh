@@ -67,6 +67,7 @@ public class CreateEventActivity extends BaseActivity implements View.OnClickLis
     private EventInfo eventInfo;
 
     private String creatorName;
+    private int seshLevel;
     private int partiesHosted;
     private Uri downloadUri;
     private String coordinates;
@@ -118,6 +119,7 @@ public class CreateEventActivity extends BaseActivity implements View.OnClickLis
                 creatorName = dataSnapshot.child("firstName").getValue().toString();
                 creatorName += " " + dataSnapshot.child("lastName").getValue().toString();
                 partiesHosted = Integer.parseInt(dataSnapshot.child("partiesHosted").getValue().toString());
+                seshLevel = Integer.parseInt(dataSnapshot.child("seshLevel").getValue().toString());
             }
 
             @Override
@@ -147,7 +149,10 @@ public class CreateEventActivity extends BaseActivity implements View.OnClickLis
                 public void onComplete(@NonNull Task<Void> task) {
                     if(task.isSuccessful()){
                         partiesHosted++;
+                        //IMPLEMENT SCALING FORMULA HERE
+                        seshLevel++;
                         mDatabase.child("users").child(user.getUid()).child("partiesHosted").setValue(partiesHosted);
+                        mDatabase.child("users").child(user.getUid()).child("seshLevel").setValue(seshLevel);
                         startActivity(new Intent(CreateEventActivity.this,HomeActivity.class));
                         Toast.makeText(CreateEventActivity.this,"Event Created Successfully",Toast.LENGTH_SHORT).show();
                     }else{

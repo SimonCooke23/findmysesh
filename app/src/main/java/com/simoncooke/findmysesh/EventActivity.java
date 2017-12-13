@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -22,6 +23,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     private DatabaseReference mDatabase;
     private StorageReference mStorage;
     private FirebaseAuth mAuth;
+    private FirebaseUser user;
 
     private ImageView eventPictureImageView;
     private TextView eventTitleTextView;
@@ -30,6 +32,7 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
     private TextView eventTimeTextView;
     private TextView eventDateTextView;
     private Button seeOnMapButton;
+    private Button deleteEventButton;
     private String eventCoordinates;
 
     private String EVENT_KEY;
@@ -52,12 +55,15 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
         eventTimeTextView = (TextView)findViewById(R.id.eventTimeTextView);
         eventDateTextView = (TextView)findViewById(R.id.eventDateTextView);
         seeOnMapButton = (Button)findViewById(R.id.seeOnMapButton);
+        deleteEventButton = findViewById(R.id.deleteEventButton);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mStorage = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
+        user = mAuth.getCurrentUser();
 
         seeOnMapButton.setOnClickListener(this);
+        deleteEventButton.setOnClickListener(this);
 
         mDatabase.child("events").child(EVENT_KEY).addValueEventListener(new ValueEventListener() {
             @Override
@@ -78,13 +84,22 @@ public class EventActivity extends AppCompatActivity implements View.OnClickList
 
             }
         });
-
+/*
+        if(EVENT_KEY.substring(0,EVENT_KEY.length()-1).equals(user.getUid())){
+            deleteEventButton.setVisibility(View.VISIBLE);
+        }
+*/
     }
 
     @Override
     public void onClick(View view) {
         if(view == seeOnMapButton){
             startActivity(new Intent(EventActivity.this, ViewEventMapActivity.class).putExtra("EVENT_COORDINATES",eventCoordinates));
+        }
+        else if(view == deleteEventButton){
+
+            startActivity(new Intent(EventActivity.this, HomeActivity.class));
+            mDatabase.child("events").child(EVENT_KEY).removeValue();
         }
     }
 

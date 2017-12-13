@@ -164,7 +164,7 @@ public class SignUpActivity extends BaseActivity implements
                             String[] nameArray = name.split(" ");
                             String email = user.getEmail();
 
-                            userInfo = new UserInfo(nameArray[0],nameArray[(nameArray.length-1)],email, 0 ,1,"","");
+                            userInfo = new UserInfo(nameArray[0],nameArray[(nameArray.length-1)],email, 0 ,1,"","","","0");
 
                             mDatabase.child("users").child(user.getUid()).setValue(userInfo);
 
@@ -197,7 +197,7 @@ public class SignUpActivity extends BaseActivity implements
         String firstName = firstNameEditText.getText().toString().trim();
         String lastName = lastNameEditText.getText().toString().trim();
 
-        userInfo = new UserInfo(firstName,lastName,email, 0 ,1,"","");
+        userInfo = new UserInfo(firstName,lastName,email, 0 ,1,"","","","0");
 
         if(!TextUtils.isEmpty(email) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(confirmPassword) && !TextUtils.isEmpty(firstName) && !TextUtils.isEmpty(lastName) && (TextUtils.equals(password,confirmPassword))){
             showProgressDialog("Registering...");
@@ -207,9 +207,7 @@ public class SignUpActivity extends BaseActivity implements
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
                         Toast.makeText(SignUpActivity.this,"Registered Successfully", Toast.LENGTH_SHORT).show();
-
                         FirebaseUser user = mAuth.getCurrentUser();
-
                         mDatabase.child("users").child(user.getUid()).setValue(userInfo);
 
                     }else{

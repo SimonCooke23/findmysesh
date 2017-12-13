@@ -7,7 +7,7 @@
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
+         location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -35,22 +35,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:supportsRtl">
-        <activity android:name="com.simoncooke.findmysesh.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.simoncooke.findmysesh.BaseActivity" />
-        <activity android:name="com.simoncooke.findmysesh.SignInActivity" />
-        <activity android:name="com.simoncooke.findmysesh.SignUpActivity" />
-        <activity android:name="com.simoncooke.findmysesh.CreateProfileActivity" />
-        <activity android:name="com.simoncooke.findmysesh.HomeActivity" />
-        <activity android:name="com.simoncooke.findmysesh.ProfileActivity" />
-        <activity android:name="com.simoncooke.findmysesh.MapsActivity2" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".SignInActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".CreateProfileActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MapsActivity2" />
         <activity
-            android:name="com.simoncooke.findmysesh.CreateEventActivity"
+            android:name=".CreateEventActivity"
             android:label="Create Event" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -58,7 +58,7 @@
              Note that the API key is linked to the encryption key used to sign the APK.
              You need a different API key for each encryption key, including the release key that is used to
              sign the APK for publishing.
-             You can define the keys for the debug and release targets in src/debug/ and src/release/. 
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -68,12 +68,13 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.simoncooke.findmysesh.MapsActivity"
+            android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name="com.simoncooke.findmysesh.EventActivity" />
+        <activity android:name=".EventActivity" />
         <activity
-            android:name="com.simoncooke.findmysesh.ViewEventMapActivity"
-            android:label="@string/title_activity_view_event_map"></activity>
+            android:name=".ViewEventMapActivity"
+            android:label="@string/title_activity_view_event_map" />
+        <activity android:name=".EditProfileActivity"></activity>
     </application>
 
 </manifest>

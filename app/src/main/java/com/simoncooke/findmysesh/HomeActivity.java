@@ -57,7 +57,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                     return true;
                 case R.id.topbarMaps:
                     if(isServicesOk()){
-                        startActivity(new Intent(HomeActivity.this, MapsActivity2.class));
+                        startActivity(new Intent(HomeActivity.this, MapsActivity.class));
                         return true;
                     }
                     return false;

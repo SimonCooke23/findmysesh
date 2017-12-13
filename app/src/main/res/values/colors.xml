@@ -6,7 +6,8 @@
     <color name="offWhite">#fefefe</color>
 
     <color name="grey_100">#eeeeee</color>
-    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_300">#e0e0e0</color>
     <color name="grey_700">#999999</color>
     <color name="backgroundFill">#fafafa</color>
+    <color name="offblack">#121212</color>
 </resources>
